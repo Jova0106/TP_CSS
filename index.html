@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Responsive Grid Layout</title>
+    <style>
+        /* Universal reset and box-sizing */
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Base body styles */
+        body,
+        html {
+            background: #999;
+            width: 100vw;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Common styles for grid items */
+        header,
+        article,
+        nav,
+        aside,
+        footer {
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        /* Color coding for different sections */
+        /*  header {
+            background: #feb;
+        }*/
+
+        header {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            height: 15vh;
+            text-align: center;
+            background: #feb;
+            display: flex;
+            justify-content: center; /* Horizontal centering */
+            align-items: center; /* Vertical centering */
+        }
+
+        article {
+            background: #dd8;
+        }
+
+        nav,
+        aside {
+            background: #ccf;
+        }
+
+        footer {
+            background: #feb;
+        }
+
+        /* Mobile layout (default) */
+        @media (max-width: 768px) {
+            body {
+                /* Single column grid for mobile */
+                grid-template-areas:
+                    "header"
+                    "article"
+                    "nav"
+                    "aside"
+                    "footer";
+                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-rows: auto 1fr auto auto auto;
+                grid-gap: 10px;
+                padding: 15px;
+            }
+
+            header,
+            article,
+            nav,
+            aside,
+            footer {
+                /* Ensure each item spans full width */
+                grid-column: 1;
+            }
+        }
+
+        /* Desktop layout */
+        @media screen and (min-width: 801px) {
+            body {
+                /* Three-column grid for desktop */
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+                grid-template-rows: auto 1fr auto;
+                grid-gap: 15px;
+                padding: 10px;
+                height: 100vh;
+                grid-template-areas:
+                    "header header header"
+                    "nav article aside"
+                    "footer footer footer";
+            }
+            /* Specific grid area assignments for desktop */
+            header {
+                grid-area: header;
+                /* Span entire top row */
+                grid-column: 1 / -1;
+            }
+
+            nav {
+                grid-area: nav;
+            }
+
+            article {
+                grid-area: article;
+            }
+
+            aside {
+                grid-area: aside;
+            }
+
+            footer {
+                grid-area: footer;
+                /* Span entire bottom row */
+                grid-column: 1 / -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <article>Article</article>
+    <nav>Navigation</nav>
+    <aside>Aside</aside>
+    <footer>Footer</footer>
+</body>
+</html>
